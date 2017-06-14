@@ -1,8 +1,6 @@
 package org.dianahep.sparkroot
 
-import org.dianahep.sparkroot.ast._
 import org.dianahep.root4j.interfaces._
-import org.dianahep.root4j.core._
 import org.dianahep.root4j._
 import org.apache.spark.sql._
 import org.apache.spark.sql.types._
@@ -1304,7 +1302,9 @@ package object ast
   /**
    * @return - returns the AbstractSchemaTree RootNode
    */
-  def buildAST(tree: TTree, 
+
+  /**
+  def buildAST(tree: TTree,
     streamers: Map[String, TStreamerInfo], // map of streamers
     requiredColumns: Array[String] // list of column names that must be preserved
     ): AbstractSchemaTree = 
@@ -1556,6 +1556,7 @@ package object ast
       )
     }
   }
+    */
 
   /**
    * @return Spark DataFrame Schema
@@ -1622,7 +1623,9 @@ package object ast
    * @return - void
    * prints the Tree
    */
-  def printAST(ast: AbstractSchemaTree): Unit = 
+
+  /**
+  def printAST(ast: AbstractSchemaTree): Unit =
   {
     def __print__(node: AbstractSchemaTree, level: Int): Unit = node match 
     {
@@ -1668,13 +1671,14 @@ package object ast
         println(("  "*level) + info + " ---> " + leaf.info)
         for (sub <- subnodes) __print__(sub, level+2)
       }
-      case UnknownTerminalNode(leaf, info, iter) => 
+      case UnknownTerminalNode(leaf, info, iter) =>
         println(("  "*level) + info + " ---> " + leaf.info)
       case _ => println(null)
     }
 
     __print__(ast, 0)
   }
+    */
 
   def containsNext(ast: AbstractSchemaTree): Boolean = ast match {
     case RootNode(name, nodes) => containsNext(nodes.head)
