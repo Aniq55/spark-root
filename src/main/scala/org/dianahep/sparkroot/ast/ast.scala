@@ -30,6 +30,8 @@ package object ast
    * NodeInfo - simple Tbranch info
    * NodeElementInfo - TBranchElement info
    */
+
+  /**
   class NodeInfo(val name: String, val title: String, val className: String,
     val myType: SRType)
   {
@@ -115,6 +117,7 @@ package object ast
    * for simple branches - these are the ROOT Type/Codes => our internal type system
    * @return - return the DataType representing the code
    */
+
   def assignLeafTypeByLeafClass(leaf: TLeaf): SRType = 
     leaf.getRootClass.getClassName.last match
   {
@@ -153,6 +156,7 @@ package object ast
     else
       assignLeafTypeByLeafClass(leaf)
   }
+    */
 
   /**
    * @return prints the Abstractly Typed Tree
@@ -1561,6 +1565,7 @@ package object ast
   /**
    * @return Spark DataFrame Schema
    */
+  /**
   def buildSparkSchema(ast: AbstractSchemaTree): StructType =
   {
     def iterate(node: AbstractSchemaTree): StructField = node match {
@@ -1694,6 +1699,7 @@ package object ast
     
     case _ => false
   }
+  */
 
   /*
    * Section for some utils
