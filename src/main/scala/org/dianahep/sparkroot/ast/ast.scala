@@ -15,6 +15,7 @@ package object ast
    * LeafInfo - simple TLeaf info
    * LeafElement - TLeafElement info
    */
+  /**
   class LeafInfo(val name: String, val className: String, val nElements: Int)
   {
     override def toString = (name, className, nElements).toString
@@ -25,7 +26,7 @@ package object ast
   {
     override def toString = (name, className, nElements, myTypeCode).toString
   }
-
+*/
   /*
    * NodeInfo - simple Tbranch info
    * NodeElementInfo - TBranchElement info
