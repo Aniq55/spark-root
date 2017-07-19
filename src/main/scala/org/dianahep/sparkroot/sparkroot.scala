@@ -2,7 +2,6 @@ package org.dianahep
 
 // spark related
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.DataFrameReader
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SQLContext
@@ -16,7 +15,6 @@ import org.apache.spark.sql.types._
 import org.apache.hadoop.fs.{Path, FileSystem, PathFilter}
 
 // sparkroot or root4j
-import org.dianahep.root4j.core.RootInput
 import org.dianahep.root4j._
 import org.dianahep.root4j.interfaces._
 import sparkroot.ast._
@@ -28,7 +26,7 @@ package object sparkroot {
   @transient lazy val logger = LogManager.getLogger("SparkRoot")
 
   /**
-   * An impolicit DataFrame Reader
+   * An implicit DataFrame Reader
    */
   implicit class RootDataFrameReader(reader: DataFrameReader) {
     def root(paths: String*) = reader.format("org.dianahep.sparkroot").load(paths: _*)
@@ -40,6 +38,7 @@ package object sparkroot {
    *  - iterates over the tree
    *  - pump the data from TTree into a spark Row
    */
+
   class RootTreeIterator(tree: TTree, // TTree
     streamers: Map[String, TStreamerInfo], // a map of streamers
     requiredColumns: Array[String], // columns that are required for a query
@@ -79,7 +78,7 @@ package object sparkroot {
     
     // create the abstract tree
 //    private val ast: AbstractSchemaTree = 
-    private val att: core.SRType = 
+    private val att: core.SRType =
     {
       //logger.info("Building the Abstract Schema Tree...")
       logger.info(s"Building the Abstract Schema Tree... for treeName=$treeName")
@@ -138,6 +137,7 @@ package object sparkroot {
 package sparkroot {
   class DefaultSource extends RelationProvider {
     def createRelation(sqlContext: SQLContext, parameters: Map[String, String]) = {
+      println("Everything is working correctly")
       println(parameters)
       new RootTableScan(parameters.getOrElse("path", sys.error("ROOT path must be specified")), parameters.getOrElse("tree", null))(sqlContext)
     }

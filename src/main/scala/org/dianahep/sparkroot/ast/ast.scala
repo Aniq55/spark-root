@@ -577,7 +577,7 @@ package object ast
       val stlBitset = "bitset"
       val stlStrings = Seq("string", "__basic_string_common<true>")
       
-      // quickly parse the class type and template argumetns
+      // quickly parse the class type and template arguments
       val classTypeRE = "(.*?)<(.*?)>".r
       logger.debug(s"classType being synthesized: ${className} ${className.trim.length} ${className.length}")
       val (classTypeString, argumentsTypeString) = className match {
@@ -1027,7 +1027,8 @@ package object ast
       parentType: core.SRTypeTag,
       flattenable: Boolean = false // is this branch flattenable
     ): core.SRType = {
-      def shuffleStreamerInfo(sinfo: TStreamerInfo) = {
+
+      /*def shuffleStreamerInfo(sinfo: TStreamerInfo) = {
         val elems = sinfo.getElements
         val bases = 
           for (i <- 0 until elems.size; se=elems.get(i).asInstanceOf[TStreamerElement]
@@ -1039,6 +1040,7 @@ package object ast
             yield se
         rest ++ bases
       }
+      */
 
       logger.debug(s"Starting StreamerInfo synthesis: ${streamerInfo.getName} numElems=${streamerInfo.getElements.size}")
       val elements = streamerInfo.getElements
@@ -1228,7 +1230,7 @@ package object ast
           }
           else {
             // this typically would be some composite class
-            // which we send recursively to itearte over again if it's not split
+            // which we send recursively to iterate over again if it's not split
             // or we get the streamerInfo and send to synthesize
 
             // find the streamer 

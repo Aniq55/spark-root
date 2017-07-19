@@ -1163,7 +1163,7 @@ case class SRComposite(
   b: TBranch, // branch
   members: Seq[SRType], // fields
   split: Boolean, // is it split - are there sub branches
-  isTop: Boolean, // top branch composite doens't read the header
+  isTop: Boolean, // top branch composite does not read the header
   isBase: Boolean = false // is this composite a base class or not
   ) extends SRType(name) {
 
